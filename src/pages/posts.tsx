@@ -52,8 +52,7 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
   }
   return (
     <Layout>
-      <Link to="/">Home</Link>
-      <h3>Posts Page</h3>
+      <h3>Posts Page {pageContext.page}/{pageContext.totalPage}</h3>
       {data.allMdx.edges.map(post => (
         <div key={post.node.excerpt}>
           <h3>{post.node.frontmatter.title}</h3>

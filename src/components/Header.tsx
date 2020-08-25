@@ -14,9 +14,10 @@ const Header = ({ siteTitle }) => (
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
+        textAlign: 'right',
       }}
     >
-      <h1 style={{ margin: 0 }}>
+      <h1 style={{ margin: 0, float: 'left' }}>
         <Link
           to="/"
           style={{
@@ -27,6 +28,20 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <div>
+        <ul style={{ listStyle: 'none' }}>
+          <li style={{ display: 'inline-block' }}>
+            <Link style={{ color: '#fff' }} to="/posts/page/1">
+              Posts
+            </Link>
+          </li>
+          <li style={{ display: 'inline-block', marginLeft: 10 }}>
+            <Link style={{ color: '#fff' }} to="/about">
+              About
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   </header>
 );

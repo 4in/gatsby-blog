@@ -10,7 +10,6 @@ const IndexPage: React.FC<PageProps<IndexProps>> = ({}) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <Link to="/posts/page/1">Posts</Link>
       <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
         <Image />
       </div>
