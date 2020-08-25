@@ -1,7 +1,8 @@
 const path = require('path');
+const { siteConfig } = require('./config');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const POST_PER_PAGE = 2;
+  const POST_PER_PAGE = siteConfig.postsPerPage;
   const { createPage } = actions;
   const {
     data: {
@@ -30,7 +31,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         skip,
         limit,
         page,
-        total: TOTAL_PAGE,
+        totalPage: TOTAL_PAGE,
       },
     });
     //#endregion

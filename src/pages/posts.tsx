@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link, PageProps, withPrefix } from 'gatsby';
+import Layout from '../layouts/Layout';
 import { Helmet } from 'react-helmet';
 
 interface PostsProps {
@@ -21,7 +22,7 @@ interface PostsPageContext {
   skip: number;
   limit: number;
   page: number;
-  total: number;
+  totalPage: number;
 }
 
 export const query = graphql`
@@ -50,7 +51,7 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
     );
   }
   return (
-    <div>
+    <Layout>
       <Link to="/">Home</Link>
       <h3>Posts Page</h3>
       {data.allMdx.edges.map(post => (
@@ -69,13 +70,13 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
             <Link to={`/posts/page/${pageContext.page - 1}`}>Prev</Link>
           </li>
         )}
-        {pageContext.page < pageContext.total && (
+        {pageContext.page < pageContext.totalPage && (
           <li>
             <Link to={`/posts/page/${pageContext.page + 1}`}>Next</Link>
           </li>
         )}
       </ul>
-    </div>
+    </Layout>
   );
 };
 
