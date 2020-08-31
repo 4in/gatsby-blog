@@ -28,7 +28,7 @@ interface PostsPageContext {
 
 export const query = graphql`
   query($skip: Int = 0, $limit: Int = 0) {
-    allMdx(skip: $skip, limit: $limit, sort: {order: DESC, fields: frontmatter___date}) {
+    allMdx(skip: $skip, limit: $limit, sort: { order: DESC, fields: frontmatter___date }) {
       edges {
         node {
           frontmatter {
@@ -54,10 +54,12 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
   }
   return (
     <Layout>
-      <h3>Posts Page {pageContext.page}/{pageContext.totalPage}</h3>
+      <h3>
+        Posts Page {pageContext.page}/{pageContext.totalPage}
+      </h3>
       {data.allMdx.edges.map(post => (
         <div key={post.node.excerpt}>
-          <p style={{float: 'right'}}>{post.node.frontmatter.date}</p>
+          <p style={{ float: 'right' }}>{post.node.frontmatter.date}</p>
           <h3>{post.node.frontmatter.title}</h3>
           <Link style={{ float: 'right' }} to={`/posts/${post.node.frontmatter.slug}`}>
             Read: {post.node.timeToRead} min
