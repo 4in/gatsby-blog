@@ -10,6 +10,7 @@ interface PostsProps {
         frontmatter: {
           title: string;
           slug: string;
+          date: string;
         };
         excerpt: string;
         timeToRead: number;
@@ -27,12 +28,13 @@ interface PostsPageContext {
 
 export const query = graphql`
   query($skip: Int = 0, $limit: Int = 0) {
-    allMdx(skip: $skip, limit: $limit) {
+    allMdx(skip: $skip, limit: $limit, sort: {order: DESC, fields: frontmatter___date}) {
       edges {
         node {
           frontmatter {
             title
             slug
+            date(formatString: "YYYY-MM-DD HH:mm:ss")
           }
           timeToRead
           excerpt
@@ -55,6 +57,7 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
       <h3>Posts Page {pageContext.page}/{pageContext.totalPage}</h3>
       {data.allMdx.edges.map(post => (
         <div key={post.node.excerpt}>
+          <p style={{float: 'right'}}>{post.node.frontmatter.date}</p>
           <h3>{post.node.frontmatter.title}</h3>
           <Link style={{ float: 'right' }} to={`/posts/${post.node.frontmatter.slug}`}>
             Read: {post.node.timeToRead} min

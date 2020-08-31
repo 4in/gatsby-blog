@@ -8,6 +8,7 @@ interface PostLayoutProps {
     body: string;
     frontmatter: {
       title: string;
+      date: string;
     };
   };
 }
@@ -18,6 +19,7 @@ export const query = graphql`
       body
       frontmatter {
         title
+        date(formatString: "YYYY-MM-DD HH:mm:ss")
       }
     }
   }
@@ -27,6 +29,7 @@ const PostLayout: React.FC<PageProps<PostLayoutProps>> = ({ data, ...props }) =>
   return (
     <Layout>
       <h1>{data.mdx.frontmatter.title}</h1>
+      <i>Date: {data.mdx.frontmatter.date}</i>
       <MDXRenderer>{data.mdx.body}</MDXRenderer>
     </Layout>
   );
