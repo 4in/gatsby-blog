@@ -44,7 +44,7 @@ const PostLayout: React.FC<PageProps<PostLayoutProps>> = ({ data, ...props }) =>
       <Layout>
         <h1>{data.mdx.frontmatter.title}</h1>
         <span style={{ display: 'block', fontStyle: 'italic', marginBottom: 30 }}>
-          Date: {moment(data.mdx.frontmatter.date).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}
+          Date: {moment(data.mdx.frontmatter.date).utcOffset(8).format('YYYY-MM-DD HH:mm')}
         </span>
         <MDXProvider components={{ pre: CodeBlock }}>
           <MDXRenderer>{data.mdx.body}</MDXRenderer>

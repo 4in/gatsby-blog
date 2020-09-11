@@ -36,7 +36,7 @@ export const query = graphql`
           frontmatter {
             title
             slug
-            date
+            date(fromNow: true, locale: "zh_CN")
           }
           timeToRead
           excerpt
@@ -62,9 +62,7 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
       </h3>
       {data.allMdx.edges.map(post => (
         <div key={post.node.excerpt}>
-          <p style={{ float: 'right' }}>
-            {moment(post.node.frontmatter.date).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}
-          </p>
+          <p style={{ float: 'right' }}>{post.node.frontmatter.date}</p>
           <h3>{post.node.frontmatter.title}</h3>
           <Link style={{ float: 'right' }} to={`/posts/${post.node.frontmatter.slug}`}>
             Read: {post.node.timeToRead} min
