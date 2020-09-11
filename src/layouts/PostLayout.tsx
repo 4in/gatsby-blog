@@ -4,7 +4,7 @@ import Layout from './Layout';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import MermaidRenderer from './components/MermaidRenderer';
-import SEO from '../components/SEO';
+import SEO from '@/components/SEO';
 import moment from 'moment';
 
 interface PostLayoutProps {

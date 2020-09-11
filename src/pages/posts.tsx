@@ -1,9 +1,8 @@
 import React from 'react';
 import { graphql, Link, PageProps, withPrefix } from 'gatsby';
-import Layout from '../layouts/Layout';
 import { Helmet } from 'react-helmet';
-import SEO from '../components/SEO';
-import moment from 'moment';
+import Layout from '@/layouts/Layout';
+import SEO from '@/components/SEO';
 
 interface PostsProps {
   allMdx: {

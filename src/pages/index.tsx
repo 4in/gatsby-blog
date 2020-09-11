@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, PageProps } from 'gatsby';
-import Layout from '../layouts/Layout';
-import Image from '../components/Image';
-import SEO from '../components/SEO';
+import { PageProps } from 'gatsby';
+import Layout from '@/layouts/Layout';
+import Image from '@/components/Image';
+import SEO from '@/components/SEO';
 
 interface IndexProps {}
 

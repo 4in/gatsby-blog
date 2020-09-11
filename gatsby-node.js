@@ -1,6 +1,16 @@
 const path = require('path');
 const { siteConfig } = require('./config');
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
+    },
+  });
+};
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const POST_PER_PAGE = siteConfig.postsPerPage;
   const { createPage } = actions;

@@ -1,0 +1,39 @@
+.header {
+  &-wrapper {
+    background: #fff;
+    margin-bottom: 1.45rem;
+    box-shadow: 0 2px 8px #f0f1f2;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 1.45rem 1.0875rem;
+  }
+
+  &-logo {
+    color: rgba(0, 0, 0, 0.85);
+    text-decoration: none;
+  }
+
+  &-list {
+    list-style: none;
+    margin: 0;
+
+    & > li {
+      display: inline-block;
+      margin: 0;
+
+      & > a {
+        color: rgba(0, 0, 0, 0.85);
+      }
+
+      & + li {
+        margin-left: 10px;
+      }
+    }
+  }
+}
