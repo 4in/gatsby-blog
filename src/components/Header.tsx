@@ -8,45 +8,19 @@ const Header = ({ siteTitle }) => (
     css={css`
       background: #fff;
       margin-bottom: 1.45rem;
-      box-shadow: 0px 10px 50px 0px rgba(0, 9, 27, 0.05);
+      box-shadow: 0 2px 8px #f0f1f2;
     `}
   >
     <div
       css={css`
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin: 0 auto;
         max-width: 960px;
         padding: 1.45rem 1.0875rem;
       `}
     >
-      <div style={{ float: 'right' }}>
-        <ul
-          css={css`
-            list-style: none;
-            margin: 0;
-          `}
-        >
-          <li style={{ display: 'inline-block', margin: 0 }}>
-            <Link
-              css={css`
-                color: rgba(0, 0, 0, 0.85);
-              `}
-              to="/posts/page/1"
-            >
-              Posts
-            </Link>
-          </li>
-          <li style={{ display: 'inline-block', margin: '0 0 0 10px' }}>
-            <Link
-              css={css`
-                color: rgba(0, 0, 0, 0.85);
-              `}
-              to="/about"
-            >
-              About
-            </Link>
-          </li>
-        </ul>
-      </div>
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
@@ -58,6 +32,34 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <div>
+        <ul
+          css={css`
+            list-style: none;
+            margin: 0;
+
+            li {
+              display: inline-block;
+              margin: 0;
+
+              a {
+                color: rgba(0, 0, 0, 0.85);
+              }
+            }
+
+            li + li {
+              margin-left: 10px;
+            }
+          `}
+        >
+          <li>
+            <Link to="/posts/page/1">Posts</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </div>
     </div>
   </header>
 );

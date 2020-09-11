@@ -3,6 +3,7 @@ import { graphql, Link, PageProps, withPrefix } from 'gatsby';
 import Layout from '../layouts/Layout';
 import { Helmet } from 'react-helmet';
 import SEO from '../components/SEO';
+import moment from 'moment';
 
 interface PostsProps {
   allMdx: {
@@ -35,7 +36,7 @@ export const query = graphql`
           frontmatter {
             title
             slug
-            date(formatString: "YYYY-MM-DD HH:mm:ss")
+            date
           }
           timeToRead
           excerpt
@@ -61,7 +62,9 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
       </h3>
       {data.allMdx.edges.map(post => (
         <div key={post.node.excerpt}>
-          <p style={{ float: 'right' }}>{post.node.frontmatter.date}</p>
+          <p style={{ float: 'right' }}>
+            {moment(post.node.frontmatter.date).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}
+          </p>
           <h3>{post.node.frontmatter.title}</h3>
           <Link style={{ float: 'right' }} to={`/posts/${post.node.frontmatter.slug}`}>
             Read: {post.node.timeToRead} min

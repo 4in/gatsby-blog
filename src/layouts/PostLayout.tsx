@@ -5,6 +5,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import MermaidRenderer from './components/MermaidRenderer';
 import SEO from '../components/SEO';
+import moment from 'moment';
 
 interface PostLayoutProps {
   mdx: {
@@ -22,7 +23,7 @@ export const query = graphql`
       body
       frontmatter {
         title
-        date(formatString: "YYYY-MM-DD HH:mm:ss")
+        date
       }
     }
   }
@@ -42,7 +43,9 @@ const PostLayout: React.FC<PageProps<PostLayoutProps>> = ({ data, ...props }) =>
       <SEO title={data.mdx.frontmatter.title} />
       <Layout>
         <h1>{data.mdx.frontmatter.title}</h1>
-        <i>Date: {data.mdx.frontmatter.date}</i>
+        <span style={{ display: 'block', fontStyle: 'italic', marginBottom: 30 }}>
+          Date: {moment(data.mdx.frontmatter.date).utcOffset(8).format('YYYY-MM-DD HH:mm:ss')}
+        </span>
         <MDXProvider components={{ pre: CodeBlock }}>
           <MDXRenderer>{data.mdx.body}</MDXRenderer>
         </MDXProvider>
