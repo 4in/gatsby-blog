@@ -4,6 +4,7 @@ import Layout from './Layout';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import MermaidRenderer from './components/MermaidRenderer';
+import SEO from '../components/SEO';
 
 interface PostLayoutProps {
   mdx: {
@@ -37,13 +38,16 @@ const CodeBlock = props => {
 
 const PostLayout: React.FC<PageProps<PostLayoutProps>> = ({ data, ...props }) => {
   return (
-    <Layout>
-      <h1>{data.mdx.frontmatter.title}</h1>
-      <i>Date: {data.mdx.frontmatter.date}</i>
-      <MDXProvider components={{ pre: CodeBlock }}>
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
-      </MDXProvider>
-    </Layout>
+    <>
+      <SEO title={data.mdx.frontmatter.title} />
+      <Layout>
+        <h1>{data.mdx.frontmatter.title}</h1>
+        <i>Date: {data.mdx.frontmatter.date}</i>
+        <MDXProvider components={{ pre: CodeBlock }}>
+          <MDXRenderer>{data.mdx.body}</MDXRenderer>
+        </MDXProvider>
+      </Layout>
+    </>
   );
 };
 

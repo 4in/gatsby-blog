@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { css } from '@emotion/core';
 
 interface MermaidRendererProps {
   content: string;
@@ -30,7 +31,17 @@ const MermaidRenderer: React.FC<MermaidRendererProps> & { assetsLoaded: boolean 
   }, []);
 
   return (
-    <div className="mermaid-graph" ref={containerRef}>
+    <div
+      className="mermaid-graph"
+      css={css`
+        text-align: center;
+
+        & > svg {
+          max-width: 100%;
+        }
+      `}
+      ref={containerRef}
+    >
       {content}
     </div>
   );
