@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, Link, PageProps, withPrefix } from 'gatsby';
 import Layout from '../layouts/Layout';
 import { Helmet } from 'react-helmet';
+import SEO from '../components/SEO';
 
 interface PostsProps {
   allMdx: {
@@ -54,6 +55,7 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
   }
   return (
     <Layout>
+      <SEO title={`Posts Page ${pageContext.page}`} />
       <h3>
         Posts Page {pageContext.page}/{pageContext.totalPage}
       </h3>

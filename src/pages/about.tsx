@@ -1,11 +1,15 @@
 import React from 'react';
 import Layout from '../layouts/Layout';
+import SEO from '../components/SEO';
 
 const About: React.FC = () => {
   return (
-    <Layout>
-      <div>About Page</div>
-    </Layout>
+    <>
+      <SEO title="About" />
+      <Layout>
+        <div>About Page</div>
+      </Layout>
+    </>
   );
 };
 
