@@ -3,6 +3,8 @@ import { graphql, Link, PageProps, withPrefix } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import Layout from '@/layouts/Layout';
 import SEO from '@/components/SEO';
+import Pagination from '@/components/Pagination';
+import style from './index.module.less';
 
 interface PostsProps {
   allMdx: {
@@ -11,10 +13,8 @@ interface PostsProps {
         frontmatter: {
           title: string;
           slug: string;
-          date: string;
         };
         excerpt: string;
-        timeToRead: number;
       };
     }[];
   };
@@ -35,17 +35,15 @@ export const query = graphql`
           frontmatter {
             title
             slug
-            date(fromNow: true, locale: "zh_CN")
           }
-          timeToRead
-          excerpt
+          excerpt(pruneLength: 200)
         }
       }
     }
   }
 `;
 
-const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pageContext }) => {
+const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pageContext, navigate }) => {
   if (!pageContext.page) {
     return (
       <Helmet>
@@ -53,35 +51,26 @@ const PostsPage: React.FC<PageProps<PostsProps, PostsPageContext>> = ({ data, pa
       </Helmet>
     );
   }
+
   return (
     <Layout>
       <SEO title={`Posts Page ${pageContext.page}`} />
-      <h3>
-        Posts Page {pageContext.page}/{pageContext.totalPage}
-      </h3>
       {data.allMdx.edges.map(post => (
-        <div key={post.node.excerpt}>
-          <p style={{ float: 'right' }}>{post.node.frontmatter.date}</p>
-          <h3>{post.node.frontmatter.title}</h3>
-          <Link style={{ float: 'right' }} to={`/posts/${post.node.frontmatter.slug}`}>
-            Read: {post.node.timeToRead} min
+        <div className={style.postContainer} key={post.node.excerpt}>
+          <h3 className={style.postTitle}>{post.node.frontmatter.title}</h3>
+          <p className={style.postDesc}>{post.node.excerpt}</p>
+          <Link className={style.postReadLink} to={`/posts/${post.node.frontmatter.slug}`}>
+            阅读全文
           </Link>
-          <p>{post.node.excerpt}</p>
-          <hr />
         </div>
       ))}
-      <ul>
-        {pageContext.page > 1 && (
-          <li>
-            <Link to={`/posts/page/${pageContext.page - 1}`}>Prev</Link>
-          </li>
-        )}
-        {pageContext.page < pageContext.totalPage && (
-          <li>
-            <Link to={`/posts/page/${pageContext.page + 1}`}>Next</Link>
-          </li>
-        )}
-      </ul>
+      <div className={style.paginationWrapper}>
+        <Pagination
+          current={pageContext.page}
+          total={pageContext.totalPage}
+          onChange={page => navigate(`/posts/page/${page}`)}
+        />
+      </div>
     </Layout>
   );
 };

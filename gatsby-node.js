@@ -27,7 +27,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     `
   );
-  const postListLayout = path.resolve('src/pages/posts.tsx');
+  const postListLayout = path.resolve('src/pages/posts/index.tsx');
   const postDetailLayout = path.resolve('src/layouts/PostLayout.tsx');
   const TOTAL_PAGE = Math.ceil(totalCount / POST_PER_PAGE);
   for (let page = 1; page <= TOTAL_PAGE; ++page) {

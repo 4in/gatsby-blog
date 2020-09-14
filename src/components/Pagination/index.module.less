@@ -1,0 +1,33 @@
+.pagination {
+  &-list {
+    margin: 0;
+    list-style: none;
+    user-select: none;
+  }
+
+  &-item {
+    @item-size: 30px;
+
+    display: inline-block;
+    margin: 0;
+    width: @item-size;
+    height: @item-size;
+    line-height: @item-size;
+    text-align: center;
+    font-size: 0.825rem;
+    border: 1px solid #f1f2f3;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover,
+    &.active {
+      color: #0087e0;
+      border-color: #0087e0;
+    }
+  }
+
+  &-item + &-item {
+    margin-left: 10px;
+  }
+}
