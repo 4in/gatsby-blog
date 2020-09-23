@@ -28,14 +28,24 @@
     & > li {
       display: inline-block;
       margin: 0;
+      background-image: linear-gradient(#abcdef, #abcdef);
+      background-repeat: no-repeat;
+      background-size: 0 38%;
+      background-position: 0 90%;
+      transition: background 0.2s ease;
 
       & > a {
-        color: rgba(0, 0, 0, 0.85);
+        color: rgba(0, 0, 0, 0.75);
         text-decoration: none;
+        padding: 0 6px;
       }
 
       & + li {
         margin-left: 10px;
+      }
+
+      &:hover {
+        background-size: 100% 38%;
       }
     }
   }
