@@ -1,3 +1,3 @@
 exports.siteConfig = {
-  postsPerPage: 2,
+  postsPerPage: 3,
 };
