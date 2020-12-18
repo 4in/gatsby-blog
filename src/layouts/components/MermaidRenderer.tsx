@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { css } from '@emotion/core';
+/** @jsx jsx */
+import { useEffect, useRef } from 'react';
+import { css, jsx } from '@emotion/react';
 
 interface MermaidRendererProps {
   content: string;
